@@ -8,6 +8,7 @@ private:
     int minutes;
 
     bool validate(int hours, int minutes);
+
 public:
     Time(int hours = 0, int minutes = 0);
 
@@ -17,5 +18,12 @@ public:
     void setHours(int hours);
     void setMinutes(int minutes);
 };
+
+bool operator<=(const Time &lhs, const Time &rhs);
+bool operator>=(const Time &lhs, const Time &rhs);
+bool operator<(const Time &lhs, const Time &rhs);
+bool operator>(const Time &lhs, const Time &rhs);
+bool operator==(const Time &lhs, const Time &rhs);
+bool operator!=(const Time &lhs, const Time &rhs);
 
 #endif

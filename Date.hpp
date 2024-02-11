@@ -20,7 +20,6 @@ int getDay() const;
 void setYear(int year);
 void setMonth(int month);
 void setDay(int day);
-
 };
 
 #endif

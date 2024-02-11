@@ -26,13 +26,40 @@ int Time::getMinutes() const
 
 void Time::setHours(int hours)
 {
-    if(hours < 0 || hours > 23)
+    if (hours < 0 || hours > 23)
         throw("Invalid hours given for setting");
     this->hours = hours;
 }
 void Time::setMinutes(int minutes)
 {
-    if(minutes < 0 || minutes > 59)
+    if (minutes < 0 || minutes > 59)
         throw("Invalid minutes given for setting");
     this->minutes = minutes;
+}
+
+
+bool operator<=(const Time &lhs, const Time &rhs)
+{
+    return lhs.getHours() <= rhs.getHours() ||
+           lhs.getHours() == rhs.getHours() && lhs.getMinutes() <= rhs.getMinutes();
+}
+bool operator>=(const Time &lhs, const Time &rhs)
+{
+    return rhs <= lhs;
+}
+bool operator<(const Time &lhs, const Time &rhs)
+{
+    return rhs > lhs;
+}
+bool operator>(const Time &lhs, const Time &rhs)
+{
+    return !(lhs <= rhs);
+}
+bool operator==(const Time &lhs, const Time &rhs)
+{
+    return lhs >= rhs && lhs <= rhs;
+}
+bool operator!=(const Time &lhs, const Time &rhs)
+{
+    return !(lhs == rhs);
 }
