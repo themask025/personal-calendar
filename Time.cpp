@@ -5,7 +5,7 @@ bool Time::validate(int hours, int minutes)
     return 0 <= hours <= 23 && 0 <= minutes <= 59;
 }
 
-Time::Time(int hours, int minutes)
+Time::Time(int hours = 0, int minutes = 0)
 {
     if (!validate(hours, minutes))
     {

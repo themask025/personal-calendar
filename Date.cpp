@@ -44,7 +44,7 @@ bool isLeap(int year)
         return (year % 400) == 0;
     return (year % 4) == 0;
 }
-Date::Date(int year, int month, int day)
+Date::Date(int year = 2024, int month = 1, int day = 1)
 {
     if (!validate(day, month, year))
         throw("Invalid date!");
