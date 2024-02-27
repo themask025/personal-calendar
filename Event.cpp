@@ -1,10 +1,10 @@
 #include "Event.hpp"
 
-Event::Event(std::string name = "Event",
-             std::string comment = "Comment",
-             Date date = {2024, 1, 1},
-             Time startTime = {0, 0},
-             Time endTime = {1, 0}) : name(name),
+Event::Event(std::string name,
+             std::string comment,
+             Date date,
+             Time startTime,
+             Time endTime) : name(name),
                              comment(comment),
                              date(date)
 {

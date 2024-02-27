@@ -15,11 +15,11 @@ private:
     Time endTime;
 
 public:
-    Event(std::string name,
-          std::string comment,
-          Date date,
-          Time startTime,
-          Time endTime);
+    Event(std::string name = "Event",
+             std::string comment = "Comment",
+             Date date = {2024, 1, 1},
+             Time startTime = {0, 0},
+             Time endTime = {1, 0});
 
     const std::string& getName() const;
     const std::string& getComment() const;
