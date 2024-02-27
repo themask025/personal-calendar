@@ -1,4 +1,5 @@
 #include "Event.hpp"
+#include <iostream>
 
 Event::Event(std::string name,
              std::string comment,
@@ -15,23 +16,23 @@ Event::Event(std::string name,
     this->endTime = endTime;
 }
 
-const std::string& Event::getName() const
+const std::string &Event::getName() const
 {
     return this->name;
 }
-const std::string& Event::getComment() const
+const std::string &Event::getComment() const
 {
     return this->comment;
 }
-const Date& Event::getDate() const
+const Date &Event::getDate() const
 {
     return this->date;
 }
-const Time& Event::getStartTime() const
+const Time &Event::getStartTime() const
 {
     return this->startTime;
 }
-const Time& Event::getEndTime() const
+const Time &Event::getEndTime() const
 {
     return this->endTime;
 }
@@ -59,4 +60,17 @@ void Event::setEndTime(Time endTime)
     if (endTime < this->startTime)
         throw("Event: Invalid endTime value for setting");
     this->endTime = endTime;
+}
+
+std::ostream &operator<<(std::ostream &os, const Event &event)
+{
+    os << "Event -----------------------" << std::endl;
+    os << "Name: " << event.getName() << std::endl;
+    os << "Comment: " << event.getComment() << std::endl;
+    os << "Date: " << event.getDate() << std::endl;
+    os << "Start time: " << event.getStartTime() << std::endl;
+    os << "End time: " << event.getEndTime() << std::endl;
+    os << "-----------------------------" << std::endl;
+
+    return os;
 }

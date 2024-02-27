@@ -1,4 +1,5 @@
 #include "Time.hpp"
+#include <iostream>
 
 bool Time::validate(int hours, int minutes)
 {
@@ -37,11 +38,10 @@ void Time::setMinutes(int minutes)
     this->minutes = minutes;
 }
 
-
 bool operator<=(const Time &lhs, const Time &rhs)
 {
     return lhs.getHours() <= rhs.getHours() ||
-           lhs.getHours() == rhs.getHours() && lhs.getMinutes() <= rhs.getMinutes();
+           (lhs.getHours() == rhs.getHours() && lhs.getMinutes() <= rhs.getMinutes());
 }
 bool operator>=(const Time &lhs, const Time &rhs)
 {
@@ -49,7 +49,9 @@ bool operator>=(const Time &lhs, const Time &rhs)
 }
 bool operator<(const Time &lhs, const Time &rhs)
 {
-    return rhs > lhs;
+    // return rhs > lhs;
+    return (lhs.getHours() < rhs.getHours()) ||
+           ((lhs.getHours() == rhs.getHours()) && (lhs.getMinutes() < rhs.getMinutes()));
 }
 bool operator>(const Time &lhs, const Time &rhs)
 {
@@ -62,4 +64,19 @@ bool operator==(const Time &lhs, const Time &rhs)
 bool operator!=(const Time &lhs, const Time &rhs)
 {
     return !(lhs == rhs);
+}
+
+std::ostream &operator<<(std::ostream &os, const Time &time)
+{
+    if (time.getHours() < 10)
+        os << "0";
+
+    os << time.getHours() << ":";
+
+    if (time.getMinutes() < 10)
+        os << "0";
+
+    os << time.getMinutes();
+
+    return os;
 }

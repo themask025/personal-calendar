@@ -34,4 +34,6 @@ public:
     void setEndTime(Time endTime);
 };
 
+std::ostream& operator<<(std::ostream& os, const Event& event);
+
 #endif

@@ -1,6 +1,8 @@
 #ifndef __DATE_HPP
 #define __DATE_HPP
 
+#include <iostream>
+
 class Date
 {
 private:
@@ -20,6 +22,11 @@ int getDay() const;
 void setYear(int year);
 void setMonth(int month);
 void setDay(int day);
+
 };
+
+bool operator==(const Date& lhs, const Date& rhs);
+
+std::ostream& operator<< (std::ostream& os, const Date& date);
 
 #endif

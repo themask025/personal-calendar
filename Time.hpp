@@ -1,6 +1,8 @@
 #ifndef __TIME_HPP
 #define __TIME_HPP
 
+#include <iostream>
+
 class Time
 {
 private:
@@ -25,5 +27,7 @@ bool operator<(const Time &lhs, const Time &rhs);
 bool operator>(const Time &lhs, const Time &rhs);
 bool operator==(const Time &lhs, const Time &rhs);
 bool operator!=(const Time &lhs, const Time &rhs);
+
+std::ostream& operator<<(std::ostream& os, const Time& time);
 
 #endif

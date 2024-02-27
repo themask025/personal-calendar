@@ -69,19 +69,33 @@ int Date::getDay() const
 
 void Date::setYear(int year)
 {
-    if(year < 0)
+    if (year < 0)
         throw("Invalid year given for setting");
     this->year = year;
 }
 void Date::setMonth(int month)
 {
-    if(month < 1 || month > 12)
+    if (month < 1 || month > 12)
         throw("Invalid month given for setting");
     this->month = month;
 }
 void Date::setDay(int day)
 {
-    if(!validate(this->year, this->month, this->day))
+    if (!validate(this->year, this->month, this->day))
         throw("Invalid day given for setting");
     this->day = day;
+}
+
+bool operator==(const Date &lhs, const Date &rhs)
+{
+    return lhs.getYear() == rhs.getYear() &&
+           lhs.getMonth() == rhs.getMonth() &&
+           lhs.getDay() == rhs.getDay();
+}
+
+std::ostream& operator<<(std::ostream& os, const Date& date)
+{
+    os << date.getDay() << "." << date.getMonth() << "." << date.getYear();
+
+    return os;
 }
