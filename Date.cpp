@@ -1,5 +1,12 @@
 #include "Date.hpp"
 
+bool isLeap(int year)
+{
+    if (year % 100 == 0)
+        return (year % 400) == 0;
+    return (year % 4) == 0;
+}
+
 bool Date::validate(int year, int month, int day)
 {
     if (year < 0)
@@ -38,13 +45,7 @@ bool Date::validate(int year, int month, int day)
     return (1 <= day <= maxValidDay);
 }
 
-bool isLeap(int year)
-{
-    if (year % 100 == 0)
-        return (year % 400) == 0;
-    return (year % 4) == 0;
-}
-Date::Date(int year = 2024, int month = 1, int day = 1)
+Date::Date(int year, int month, int day)
 {
     if (!validate(day, month, year))
         throw("Invalid date!");
