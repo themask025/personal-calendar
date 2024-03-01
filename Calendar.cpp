@@ -9,8 +9,8 @@ bool Calendar::isCompatible(const Event &event)
     for (Event existingEvent : events)
     {
         if (event.getDate() == existingEvent.getDate() &&
-            (((existingEvent.getStartTime() < event.getStartTime()) && (event.getStartTime() < existingEvent.getEndTime())) ||
-             ((existingEvent.getStartTime() < event.getEndTime()) && (event.getEndTime() < existingEvent.getEndTime()))))
+            (((existingEvent.getStartTime() <= event.getStartTime()) && (event.getStartTime() < existingEvent.getEndTime())) ||
+             ((existingEvent.getStartTime() < event.getEndTime()) && (event.getEndTime() <= existingEvent.getEndTime()))))
         {
             return false;
         }
