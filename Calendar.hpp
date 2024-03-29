@@ -13,6 +13,8 @@ private:
 public:
     Calendar();
 
+    const std::vector<Event>& getEvents() const;
+
     void addEvent(const Event& event);
     void printEvents() const;
 };

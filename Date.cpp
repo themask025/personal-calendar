@@ -42,12 +42,12 @@ bool Date::validate(int year, int month, int day)
         break;
     }
 
-    return (1 <= day <= maxValidDay);
+    return (1 <= day && day <= maxValidDay);
 }
 
 Date::Date(int year, int month, int day)
 {
-    if (!validate(day, month, year))
+    if (!validate(year, month, day))
         throw("Invalid date!");
     this->year = year;
     this->month = month;

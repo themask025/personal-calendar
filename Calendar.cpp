@@ -21,6 +21,11 @@ bool Calendar::isCompatible(const Event &event)
 
 Calendar::Calendar() : events({}) {}
 
+const std::vector<Event>& Calendar::getEvents() const
+{
+    return this->events;
+}
+
 void Calendar::addEvent(const Event &event)
 {
     if (!isCompatible(event))

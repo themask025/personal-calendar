@@ -1,5 +1,5 @@
 #include "../Time.hpp"
-// #include "../common/doctest.h"
+
 
 TEST_CASE("Time: Creating a time object with implicit arguments has zeroes for hours and minutes values.")
 {

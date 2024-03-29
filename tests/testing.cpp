@@ -7,3 +7,4 @@
 #include "../common/doctest.h"
 
 #include "time_tests.hpp"
+#include "date_tests.hpp"
