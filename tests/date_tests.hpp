@@ -52,3 +52,22 @@ TEST_CASE("Constructor throws an exception when given invalid values for day.")
     // the month has a maximim of 29 days - the year is leap
     CHECK_THROWS_WITH(new Date(2024, 2, 30), "Invalid date!");
 }
+
+TEST_CASE("Operator == returns true for Date objects with fields with equal values.")
+{
+    Date lhs(2024, 2, 15);
+    Date rhs(2024, 2, 15);
+    CHECK(lhs == rhs);
+
+    lhs = (2024, 2, 15);
+    rhs = (2023, 1, 14);
+    CHECK_FALSE(lhs == rhs);
+}
+
+TEST_CASE("Operator << writes to output stream correctly.")
+{
+    Date date(2024, 3, 30);
+    std::ostringstream oss;
+    oss << date;
+    CHECK(oss & oss.str() == "30.03.2024");
+}
