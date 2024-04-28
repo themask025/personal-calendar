@@ -95,7 +95,15 @@ bool operator==(const Date &lhs, const Date &rhs)
 
 std::ostream& operator<<(std::ostream& os, const Date& date)
 {
-    os << date.getDay() << "." << date.getMonth() << "." << date.getYear();
+    if(date.getDay() < 10)
+        os << "0";
+
+    os << date.getDay() << ".";
+    
+    if(date.getMonth() < 10)
+        os << "0";
+
+    os << date.getMonth() << "." << date.getYear();
 
     return os;
 }

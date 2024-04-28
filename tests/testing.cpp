@@ -8,3 +8,5 @@
 
 #include "time_tests.hpp"
 #include "date_tests.hpp"
+#include "event_tests.hpp"
+#include "calendar_tests.hpp"

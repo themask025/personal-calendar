@@ -10,12 +10,16 @@ private:
     std::vector<Event> events;
 
     bool isCompatible(const Event& event);
+    std::vector<Event>::const_iterator searchEvent(const Date& date, const Time& startTime) const;
+
 public:
     Calendar();
 
     const std::vector<Event>& getEvents() const;
+    bool containsEvent(const Date& date, const Time& startTime) const;
 
     void addEvent(const Event& event);
+    void removeEvent(const Date& date, const Time& startTime);
     void printEvents() const;
 };
 
