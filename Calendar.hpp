@@ -20,6 +20,7 @@ public:
 
     void addEvent(const Event& event);
     void removeEvent(const Date& date, const Time& startTime);
+    void printDailySchedule(const Date& date) const;
     void printEvents() const;
 };
 

@@ -92,15 +92,27 @@ bool operator==(const Date &lhs, const Date &rhs)
            lhs.getMonth() == rhs.getMonth() &&
            lhs.getDay() == rhs.getDay();
 }
-
-std::ostream& operator<<(std::ostream& os, const Date& date)
+bool operator<(const Date &lhs, const Date &rhs)
 {
-    if(date.getDay() < 10)
+    if (lhs.getYear() == rhs.getYear())
+    {
+        if (lhs.getMonth() == rhs.getMonth())
+        {
+            return lhs.getDay() < rhs.getDay();
+        }
+        return lhs.getMonth() < rhs.getMonth();
+    }
+    return lhs.getYear() < rhs.getYear();
+}
+
+std::ostream &operator<<(std::ostream &os, const Date &date)
+{
+    if (date.getDay() < 10)
         os << "0";
 
     os << date.getDay() << ".";
-    
-    if(date.getMonth() < 10)
+
+    if (date.getMonth() < 10)
         os << "0";
 
     os << date.getMonth() << "." << date.getYear();

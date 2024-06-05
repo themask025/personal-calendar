@@ -74,3 +74,12 @@ std::ostream &operator<<(std::ostream &os, const Event &event)
 
     return os;
 }
+
+bool operator<(const Event& lhs, const Event& rhs)
+{
+    if(lhs.getDate() == rhs.getDate())
+    {
+        return lhs.getStartTime() < rhs.getStartTime();
+    }
+    return lhs.getDate() < rhs.getDate();
+}

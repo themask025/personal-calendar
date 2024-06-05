@@ -35,3 +35,4 @@ TEST_CASE("removeEvent() removes from the vector of calendar events an event, sp
     CHECK_FALSE(calendar.containsEvent(secondEvent.getDate(), secondEvent.getStartTime()));
     CHECK_FALSE(calendar.containsEvent(fourthEvent.getDate(), fourthEvent.getStartTime()));
 }
+
