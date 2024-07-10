@@ -119,3 +119,23 @@ std::ostream &operator<<(std::ostream &os, const Date &date)
 
     return os;
 }
+
+std::istream &operator>>(std::istream &is, Date &date)
+{
+    int year = 0;
+    int month = 0;
+    int day = 0;
+
+    std::cout << "Please enter value for year:" << std::endl;
+    is >> year;
+    std::cout << "Please enter value for month:" << std::endl;
+    is >> month;
+    std::cout << "Please enter value for day:" << std::endl;
+    is >> day;
+
+    date.setYear(year);
+    date.setMonth(month);
+    date.setDay(day);
+
+    return is;
+}

@@ -80,3 +80,19 @@ std::ostream &operator<<(std::ostream &os, const Time &time)
 
     return os;
 }
+
+std::istream &operator>>(std::istream &is, Time &time)
+{
+    int hours = 0;
+    int minutes = 0;
+
+    std::cout<<"Please enter hours:"<<std::endl;
+    is>>hours;
+    std::cout<<"Please enter minutes:"<<std::endl;
+    is>>minutes;
+
+    time.setHours(hours);
+    time.setMinutes(minutes);
+    
+    return is;
+}
