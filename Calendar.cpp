@@ -2,16 +2,13 @@
 #include <iostream>
 #include <algorithm>
 
-bool Calendar::isCompatible(const Event &event)
+bool Calendar::isCompatibleTimeInterval(const Date &date, const Time &startTime, const Time &endTime)
 {
-    if (events.empty())
-        return true;
-
     for (Event existingEvent : events)
     {
-        if (event.getDate() == existingEvent.getDate() &&
-            (((existingEvent.getStartTime() <= event.getStartTime()) && (event.getStartTime() < existingEvent.getEndTime())) ||
-             ((existingEvent.getStartTime() < event.getEndTime()) && (event.getEndTime() <= existingEvent.getEndTime()))))
+        if (date == existingEvent.getDate() &&
+            (((existingEvent.getStartTime() <= startTime) && (endTime < existingEvent.getEndTime())) ||
+             ((existingEvent.getStartTime() < endTime) && (endTime <= existingEvent.getEndTime()))))
         {
             return false;
         }
@@ -45,7 +42,7 @@ bool Calendar::containsEvent(const Date &date, const Time &startTime) const
 
 void Calendar::addEvent(const Event &event)
 {
-    if (!isCompatible(event))
+    if (!isCompatibleTimeInterval(event.getDate(), event.getStartTime(), event.getEndTime()))
         throw("Event overlaps with an existing event");
 
     this->events.push_back(event);

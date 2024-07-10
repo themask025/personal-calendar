@@ -9,7 +9,7 @@ class Calendar
 private:
     std::vector<Event> events;
 
-    bool isCompatible(const Event& event);
+    bool isCompatibleTimeInterval(const Date& date, const Time& startTime, const Time& endTime);
     std::vector<Event>::const_iterator searchEvent(const Date& date, const Time& startTime) const;
 
 public:
