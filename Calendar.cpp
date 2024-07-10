@@ -28,6 +28,17 @@ std::vector<Event>::const_iterator Calendar::searchEvent(const Date &date, const
     return events.end();
 }
 
+std::vector<Event>::iterator Calendar::getEvent(const Date &date, const Time &startTime)
+{
+    for (std::vector<Event>::iterator it = events.begin(); it != events.end(); ++it)
+    {
+        if (it->getDate() == date && it->getStartTime() == startTime)
+            return it;
+    }
+
+    return events.end();
+}
+
 Calendar::Calendar() : events({}) {}
 
 const std::vector<Event> &Calendar::getEvents() const
@@ -56,6 +67,38 @@ void Calendar::removeEvent(const Date &date, const Time &startTime)
         throw("The event targeted for removal does not exist.");
 
     events.erase(target);
+}
+
+void Calendar::editEvent(
+    const Date &date,
+    const Time &startTime,
+    std::string newName,
+    std::string newComment,
+    Date newDate,
+    Time newStartTime,
+    Time newEndTime)
+{
+    std::vector<Event>::iterator target = getEvent(date, startTime);
+    if (target == events.end())
+        throw("The event targeted for editing does not exist.");
+
+    if (!isCompatibleTimeInterval(newDate, newStartTime, newEndTime))
+        throw("The new time interval overlaps with that of an existing event.");
+
+    if (newName != target->getName())
+        target->setName(newName);
+
+    if (newComment != target->getComment())
+        target->setComment(newComment);
+
+    if (newDate != target->getDate())
+        target->setDate(newDate);
+
+    if (newStartTime != target->getStartTime())
+        target->setStartTime(newStartTime);
+
+    if (newEndTime != target->getEndTime())
+        target->setEndTime(newEndTime);
 }
 
 void Calendar::printDailySchedule(const Date &date) const

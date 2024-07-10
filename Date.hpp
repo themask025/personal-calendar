@@ -26,6 +26,7 @@ void setDay(int day);
 };
 
 bool operator==(const Date& lhs, const Date& rhs);
+bool operator!=(const Date& lhs, const Date& rhs);
 bool operator<(const Date& lhs, const Date& rhs);
 
 std::ostream& operator<< (std::ostream& os, const Date& date);
