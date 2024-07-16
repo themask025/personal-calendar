@@ -17,6 +17,22 @@ bool Calendar::isCompatibleTimeInterval(const Date &date, const Time &startTime,
     return true;
 }
 
+bool Calendar::isCompatibleEditingOfEvent(const Date &newDate, const Time &newStartTime, const Time &newEndTime, std::vector<Event>::iterator eventToEdit)
+{
+    for (Event existingEvent : events)
+    {
+        if ((*eventToEdit != existingEvent) &&
+            (newDate == existingEvent.getDate()) &&
+            (((existingEvent.getStartTime() <= newStartTime) && (newEndTime < existingEvent.getEndTime())) ||
+             ((existingEvent.getStartTime() < newEndTime) && (newEndTime <= existingEvent.getEndTime()))))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 std::vector<Event>::const_iterator Calendar::searchEvent(const Date &date, const Time &startTime) const
 {
     for (std::vector<Event>::const_iterator it = events.begin(); it != events.end(); ++it)
@@ -82,23 +98,11 @@ void Calendar::editEvent(
     if (target == events.end())
         throw("The event targeted for editing does not exist.");
 
-    if (!isCompatibleTimeInterval(newDate, newStartTime, newEndTime))
+    if (!isCompatibleEditingOfEvent(newDate, newStartTime, newEndTime, target))
         throw("The new time interval overlaps with that of an existing event.");
 
-    if (newName != target->getName())
-        target->setName(newName);
-
-    if (newComment != target->getComment())
-        target->setComment(newComment);
-
-    if (newDate != target->getDate())
-        target->setDate(newDate);
-
-    if (newStartTime != target->getStartTime())
-        target->setStartTime(newStartTime);
-
-    if (newEndTime != target->getEndTime())
-        target->setEndTime(newEndTime);
+    Event editedEvent(newName, newComment, newDate, newStartTime, newEndTime);
+    (*target) = editedEvent;
 }
 
 void Calendar::printDailySchedule(const Date &date) const

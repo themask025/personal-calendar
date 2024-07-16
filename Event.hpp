@@ -36,5 +36,7 @@ public:
 
 std::ostream& operator<<(std::ostream& os, const Event& event);
 bool operator<(const Event& lhs, const Event& rhs);
+bool operator==(const Event& lhs, const Event& rhs);
+bool operator!=(const Event& lhs, const Event& rhs);
 
 #endif

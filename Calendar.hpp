@@ -10,6 +10,7 @@ private:
     std::vector<Event> events;
 
     bool isCompatibleTimeInterval(const Date &date, const Time &startTime, const Time &endTime);
+    bool isCompatibleEditingOfEvent(const Date &newDate, const Time &newStartTime, const Time &newEndTime, std::vector<Event>::iterator eventToEdit);
     std::vector<Event>::const_iterator searchEvent(const Date &date, const Time &startTime) const;
     std::vector<Event>::iterator getEvent(const Date &date, const Time &startTime);
 
