@@ -40,7 +40,7 @@ void Time::setMinutes(int minutes)
 
 bool operator<=(const Time &lhs, const Time &rhs)
 {
-    return lhs.getHours() <= rhs.getHours() ||
+    return lhs.getHours() < rhs.getHours() ||
            (lhs.getHours() == rhs.getHours() && lhs.getMinutes() <= rhs.getMinutes());
 }
 bool operator>=(const Time &lhs, const Time &rhs)
@@ -49,7 +49,6 @@ bool operator>=(const Time &lhs, const Time &rhs)
 }
 bool operator<(const Time &lhs, const Time &rhs)
 {
-    // return rhs > lhs;
     return (lhs.getHours() < rhs.getHours()) ||
            ((lhs.getHours() == rhs.getHours()) && (lhs.getMinutes() < rhs.getMinutes()));
 }

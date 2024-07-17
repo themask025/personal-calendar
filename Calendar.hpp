@@ -13,6 +13,7 @@ private:
     bool isCompatibleEditingOfEvent(const Date &newDate, const Time &newStartTime, const Time &newEndTime, std::vector<Event>::iterator eventToEdit);
     std::vector<Event>::const_iterator searchEvent(const Date &date, const Time &startTime) const;
     std::vector<Event>::iterator getEvent(const Date &date, const Time &startTime);
+    std::vector<Event> findEventsByKeyword(const std::string keyword) const;
 
 public:
     Calendar();
@@ -32,6 +33,7 @@ public:
         Time newEndTime);
 
     void printDailySchedule(const Date &date) const;
+    void printEventsByKeyword(const std::string keyword) const; 
     void printEvents() const;
 };
 

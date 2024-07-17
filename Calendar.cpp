@@ -1,13 +1,14 @@
 #include "Calendar.hpp"
 #include <iostream>
 #include <algorithm>
+#include <cstring>
 
 bool Calendar::isCompatibleTimeInterval(const Date &date, const Time &startTime, const Time &endTime)
 {
     for (Event existingEvent : events)
     {
         if (date == existingEvent.getDate() &&
-            (((existingEvent.getStartTime() <= startTime) && (endTime < existingEvent.getEndTime())) ||
+            (((existingEvent.getStartTime() <= startTime) && (startTime < existingEvent.getEndTime())) ||
              ((existingEvent.getStartTime() < endTime) && (endTime <= existingEvent.getEndTime()))))
         {
             return false;
@@ -23,7 +24,7 @@ bool Calendar::isCompatibleEditingOfEvent(const Date &newDate, const Time &newSt
     {
         if ((*eventToEdit != existingEvent) &&
             (newDate == existingEvent.getDate()) &&
-            (((existingEvent.getStartTime() <= newStartTime) && (newEndTime < existingEvent.getEndTime())) ||
+            (((existingEvent.getStartTime() <= newStartTime) && (newStartTime < existingEvent.getEndTime())) ||
              ((existingEvent.getStartTime() < newEndTime) && (newEndTime <= existingEvent.getEndTime()))))
         {
             return false;
@@ -53,6 +54,17 @@ std::vector<Event>::iterator Calendar::getEvent(const Date &date, const Time &st
     }
 
     return events.end();
+}
+
+std::vector<Event> Calendar::findEventsByKeyword(const std::string keyword) const
+{
+    std::vector<Event> result;
+    for (Event event : events)
+    {
+        if (std::strstr(event.getName().c_str(), keyword.c_str()) || std::strstr(event.getComment().c_str(), keyword.c_str()))
+            result.push_back(event);
+    }
+    return result;
 }
 
 Calendar::Calendar() : events({}) {}
@@ -118,6 +130,15 @@ void Calendar::printDailySchedule(const Date &date) const
     std::sort(filteredEvents.begin(), filteredEvents.end());
 
     for (const Event &event : filteredEvents)
+    {
+        std::cout << event << std::endl;
+    }
+}
+
+void Calendar::printEventsByKeyword(const std::string keyword) const
+{
+    std::vector<Event> filteredEvents = findEventsByKeyword(keyword);
+    for (Event event : filteredEvents)
     {
         std::cout << event << std::endl;
     }
