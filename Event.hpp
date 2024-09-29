@@ -32,6 +32,8 @@ public:
     void setDate(Date date);
     void setStartTime(Time startTime);
     void setEndTime(Time endTime);
+
+    Time getDuration() const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Event& event);

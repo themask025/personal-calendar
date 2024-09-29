@@ -28,3 +28,20 @@ TEST_CASE("Setters set correct values.")
     CHECK_EQ(event.getStartTime(), Time(2, 0));
     CHECK_EQ(event.getEndTime(), Time(3, 0));
 }
+
+TEST_CASE("getDuration() gives correct results")
+{
+    Event event;
+    event.setName("test name");
+    event.setComment("test comment");
+    event.setDate(Date(2024, 2, 2));
+    event.setEndTime(Time(3, 0));
+    event.setStartTime(Time(2, 0));
+
+    CHECK_EQ(event.getDuration(), Time(1, 0));
+    
+    event.setEndTime(Time(15, 25));
+    event.setStartTime(Time(2, 10));
+
+    CHECK_EQ(event.getDuration(), Time(13, 15));
+}

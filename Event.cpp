@@ -62,6 +62,11 @@ void Event::setEndTime(Time endTime)
     this->endTime = endTime;
 }
 
+Time Event::getDuration() const
+{
+    return endTime - startTime;
+}
+
 std::ostream &operator<<(std::ostream &os, const Event &event)
 {
     os << "Event -----------------------" << std::endl;
