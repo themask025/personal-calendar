@@ -1,6 +1,5 @@
 #include "../Time.hpp"
 
-
 TEST_CASE("Time: Creating a time object with implicit arguments has zeroes for hours and minutes values.")
 {
     Time time;
@@ -35,4 +34,25 @@ TEST_CASE("getMinutes() returns value of minutes field")
     CHECK_EQ((new Time(0, 5))->getMinutes(), 5);
     CHECK_EQ((new Time(0, 20))->getMinutes(), 20);
     CHECK_EQ((new Time(0, 59))->getMinutes(), 59);
+}
+
+TEST_CASE("Substraction throws an exception on substracting greater from smaller time")
+{
+    CHECK_THROWS(Time(10, 00) - Time(20, 0));
+}
+
+TEST_CASE("Substraction gives correct results")
+{
+    CHECK_EQ(Time(0, 10) - Time(0, 5), Time(0, 5));
+    CHECK_EQ(Time(11, 0) - Time(4, 0), Time(7, 0));
+    CHECK_EQ(Time(15, 20) - Time(10, 10), Time(5, 10));
+    CHECK_EQ(Time(15, 20) - Time(14, 30), Time(0, 50));
+}
+
+TEST_CASE("Addition gives correct results")
+{
+    CHECK_EQ(Time(0, 20) + Time(0, 10), Time(0, 30));
+    CHECK_EQ(Time(14, 0) + Time(5, 0), Time(19, 0));
+    CHECK_EQ(Time(6, 15) + Time(10, 20), Time(16, 35));
+    CHECK_EQ(Time(22, 0) + Time(4, 0), Time(2, 0));
 }

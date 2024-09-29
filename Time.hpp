@@ -28,6 +28,9 @@ bool operator>(const Time &lhs, const Time &rhs);
 bool operator==(const Time &lhs, const Time &rhs);
 bool operator!=(const Time &lhs, const Time &rhs);
 
+Time operator+(const Time& lhs, const Time& rhs);
+Time operator-(const Time& lhs, const Time& rhs);
+
 std::ostream& operator<<(std::ostream& os, const Time& time);
 std::istream& operator>>(std::istream& is, Time& time);
 

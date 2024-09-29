@@ -65,6 +65,37 @@ bool operator!=(const Time &lhs, const Time &rhs)
     return !(lhs == rhs);
 }
 
+Time operator+(const Time &lhs, const Time &rhs)
+{
+    Time result;
+
+    result.setMinutes((lhs.getMinutes() + rhs.getMinutes()) % 60);
+    result.setHours((lhs.getHours() + rhs.getHours() + (lhs.getMinutes() + rhs.getMinutes()) / 60) % 24);
+
+    return result;
+}
+
+Time operator-(const Time &lhs, const Time &rhs)
+{
+    if (lhs < rhs)
+    {
+        throw("Attempt to substract greater time from smaller time!");
+    }
+
+    Time result;
+    if (lhs.getMinutes() < rhs.getMinutes())
+    {
+        result.setMinutes((lhs.getMinutes() + 60) - rhs.getMinutes());
+        result.setHours((lhs.getHours() - 1) - rhs.getHours());
+    }
+    else
+    {
+        result.setMinutes(lhs.getMinutes() - rhs.getMinutes());
+        result.setHours(lhs.getHours() - rhs.getHours());
+    }
+    return result;
+}
+
 std::ostream &operator<<(std::ostream &os, const Time &time)
 {
     if (time.getHours() < 10)
@@ -85,13 +116,13 @@ std::istream &operator>>(std::istream &is, Time &time)
     int hours = 0;
     int minutes = 0;
 
-    std::cout<<"Please enter hours:"<<std::endl;
-    is>>hours;
-    std::cout<<"Please enter minutes:"<<std::endl;
-    is>>minutes;
+    std::cout << "Please enter hours:" << std::endl;
+    is >> hours;
+    std::cout << "Please enter minutes:" << std::endl;
+    is >> minutes;
 
     time.setHours(hours);
     time.setMinutes(minutes);
-    
+
     return is;
 }
