@@ -38,6 +38,11 @@ void Time::setMinutes(int minutes)
     this->minutes = minutes;
 }
 
+double Time::toHours() const
+{
+    return (this->hours + (double(this -> minutes) / 60));
+}
+
 bool operator<=(const Time &lhs, const Time &rhs)
 {
     return lhs.getHours() < rhs.getHours() ||

@@ -19,6 +19,8 @@ public:
 
     void setHours(int hours);
     void setMinutes(int minutes);
+
+    double toHours() const;
 };
 
 bool operator<=(const Time &lhs, const Time &rhs);

@@ -56,3 +56,9 @@ TEST_CASE("Addition gives correct results")
     CHECK_EQ(Time(6, 15) + Time(10, 20), Time(16, 35));
     CHECK_EQ(Time(22, 0) + Time(4, 0), Time(2, 0));
 }
+
+TEST_CASE("toHours() gives the time in hours")
+{
+    CHECK_EQ(Time(12,30).toHours(), 12.5);
+    CHECK_EQ(Time(10,15).toHours(), 10.25);
+}
