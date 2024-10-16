@@ -70,3 +70,15 @@ TEST_CASE("Operator << writes to output stream correctly.")
     oss << date;
     CHECK(oss.str() == "30.03.2024");
 }
+
+TEST_CASE("dayOfWeek() returns a number corresponding to the day of week for the date")
+{
+    Date date(2024, 10, 16);
+    CHECK_EQ(date.getWeekday(), 2);
+
+    date = Date(2020, 1, 1);
+    CHECK_EQ(date.getWeekday(), 2);
+
+    date = Date(1889, 10, 1);
+    CHECK_EQ(date.getWeekday(), 1);
+}

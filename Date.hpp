@@ -23,6 +23,7 @@ void setYear(int year);
 void setMonth(int month);
 void setDay(int day);
 
+int getWeekday() const;
 };
 
 bool operator==(const Date& lhs, const Date& rhs);
