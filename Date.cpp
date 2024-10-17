@@ -93,9 +93,9 @@ int Date::getWeekday() const
     int m = this->month;
     int d = this->day;
 
-    static int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };  
-    y -= m < 3;  
-    return ( y + y / 4 - y / 100 + y / 400 + t[m - 1] + d - 1) % 7;
+    static int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
+    y -= m < 3;
+    return (y + y / 4 - y / 100 + y / 400 + t[m - 1] + d - 1) % 7;
 }
 
 bool operator==(const Date &lhs, const Date &rhs)
@@ -119,6 +119,18 @@ bool operator<(const Date &lhs, const Date &rhs)
         return lhs.getMonth() < rhs.getMonth();
     }
     return lhs.getYear() < rhs.getYear();
+}
+bool operator>(const Date &lhs, const Date &rhs)
+{
+    return rhs < lhs;
+}
+bool operator<=(const Date &lhs, const Date &rhs)
+{
+    return lhs < rhs || lhs == rhs;
+}
+bool operator>=(const Date &lhs, const Date &rhs)
+{
+    return lhs > rhs || lhs == rhs;
 }
 
 std::ostream &operator<<(std::ostream &os, const Date &date)

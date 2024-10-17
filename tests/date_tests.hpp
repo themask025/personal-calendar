@@ -41,10 +41,10 @@ TEST_CASE("Constructor throws an exception when given invalid values for day.")
 
     // the month has a maximum of 31 days
     CHECK_THROWS_WITH(Date(1, 1, 32), "Invalid date!");
-    
+
     // the month has a maximum of 30 days
     CHECK_THROWS_WITH(Date(1, 4, 31), "Invalid date!");
-    
+
     // the month has a maximum of 28 days - the year is not leap
     CHECK_THROWS_WITH(Date(2023, 2, 29), "Invalid date!");
 
@@ -57,10 +57,75 @@ TEST_CASE("Operator == returns true for Date objects with fields with equal valu
     Date lhs(2024, 2, 15);
     Date rhs(2024, 2, 15);
     CHECK(lhs == rhs);
+}
 
-    lhs = (2024, 2, 15);
-    rhs = (2023, 1, 14);
+TEST_CASE("Operator == returns false for Date objects with fields with different values.")
+{
+    Date lhs(2024, 2, 14);
+    Date rhs(2024, 2, 15);
     CHECK_FALSE(lhs == rhs);
+}
+
+TEST_CASE("Operator != returns true for Date objects with fields with different values.")
+{
+    Date lhs(2024, 2, 14);
+    Date rhs(2024, 2, 15);
+    CHECK(lhs != rhs);
+
+    lhs = Date(2024, 4, 15);
+    rhs = Date(2024, 2, 15);
+    CHECK(lhs != rhs);
+
+    lhs = Date(2026, 2, 15);
+    rhs = Date(2024, 2, 15);
+    CHECK(lhs != rhs);
+
+    lhs = Date(2026, 8, 5);
+    rhs = Date(2024, 1, 25);
+    CHECK(lhs != rhs);
+}
+
+TEST_CASE("Operator != returns false for Date objects with fields with equal values")
+{
+    Date lhs(2024, 2, 15);
+    Date rhs(2024, 2, 15);
+    CHECK_FALSE(lhs != rhs);
+}
+
+TEST_CASE("(lhs < rhs) returns true for Date objects lhs and rhs when lhs represents an earlier date than rhs")
+{
+    Date lhs(2015, 3, 20);
+    Date rhs(2024, 2, 15);
+    CHECK(lhs < rhs);
+}
+
+TEST_CASE("(lhs > rhs) returns true for Date objects lhs and rhs when lhs represents a later date than rhs")
+{
+    Date lhs(2024, 2, 15);
+    Date rhs(2015, 3, 20);
+    CHECK(lhs > rhs);
+}
+
+TEST_CASE("(lhs <= rhs) returns true for Date objects lhs and rhs when lhs represents an earlier or equal date than rhs")
+{
+    Date lhs(2015, 3, 20);
+    Date rhs(2024, 2, 15);
+    CHECK(lhs <= rhs);
+
+    lhs = Date(2024, 2, 15);
+    rhs = Date(2024, 2, 15);
+    CHECK(lhs <= rhs);
+}
+
+TEST_CASE("(lhs >= rhs) returns true for Date objects lhs and rhs when lhs represents a later or equal date than rhs")
+{
+    Date lhs(2024, 2, 15);
+    Date rhs(2015, 3, 20);
+    CHECK(lhs >= rhs);
+
+    lhs = Date(2024, 2, 15);
+    rhs = Date(2024, 2, 15);
+    CHECK(lhs >= rhs);
 }
 
 TEST_CASE("Operator << writes to output stream correctly.")
